@@ -103,9 +103,10 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - Adicionar upload e parser para arquivos Excel.
   - Validar dados e persistir registros na base.
 
-- [ ] **Usar `logo.png` em layouts**
+- [x] **Usar `logo.png` em layouts**
   - Mover o arquivo para `public/images` (ou equivalente) e referenciar em `layouts/app.blade.php`.
-  - Exibir no header, formulários de login e tabelas de pontuação.
+  - Exibir no header, formulários de login e tabelas de pontuação.  
+  ✅ Logo copiado para `public/images` e layout básico com header já exibindo a imagem.
 
 > 💡 A permissão de armazenamento deve ser corrigida para evitar erros 500 (`tempnam()` no Blade); execute `php artisan optimize:clear` e garanta `storage/` e `bootstrap/cache` graváveis.
 - [ ] **Implementar cadastro de alunos e validação GitHub**
@@ -114,9 +115,10 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - [ ] **Configurar geração de senha imutável**
   - Gerar senha a partir de CPF, data de nascimento e telefone.
   - Armazenar de forma segura (hash) e impedir edições futuras.
-- [ ] **Autenticação e abas de login**
-  - Tela única com abas para professor e aluno.
-  - Gerenciar roles e redirecionamentos após o login.
+- [x] **Autenticação e abas de login**
+  - Tela única com abas para professor e aluno.  
+  - Gerenciar roles e redirecionamentos após o login.  
+  ✅ LoginController simples criado; rotas `/login`, `/logout`, `/dashboard` definidos. View com abas funcional e redirecionamento após auth.
 - [ ] **Página de registro e histórico de presença**
   - Interface para marcação de presença por data.
   - Relatórios de faltas e presenças por aluno/turma.
