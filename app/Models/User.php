@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use App\Models\ClassGroup;
 use App\Models\Presence;
 use App\Models\Submission;
@@ -32,6 +33,7 @@ class User extends Authenticatable
         'birthdate',
         'github_username',
         'class_group_id',
+        'password_locked',
     ];
 
     /**
@@ -55,12 +57,27 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'birthdate' => 'date',
+            'password_locked' => 'boolean',
         ];
     }
 
     public function classGroup()
     {
         return $this->belongsTo(ClassGroup::class);
+    }
+
+    /**
+     * Set the password attribute, ignoring changes if locked.
+     */
+    public function setPasswordAttribute($value)
+    {
+        if ($this->exists && $this->password_locked) {
+            // do not change existing password
+            return;
+        }
+
+        $this->attributes['password'] = Hash::make($value);
+        $this->attributes['password_locked'] = true;
     }
 
     public function presences()

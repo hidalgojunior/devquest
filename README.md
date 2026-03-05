@@ -115,6 +115,7 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - Formulário para inserção individual e verificação automática do usuário GitHub.
   - Integração com API GitHub ou OAuth para confirmar identidade.  
   ✅ Registration form and controller in place; GitHub username validated and password generated automatically.
+  - 🔐 Senha gerada baseada em CPF/nascimento/telefone e travada (imutável) via campo `password_locked`.  Uma alteração não é permitida após criação.
 - [x] **Criar interface de upload XLSX**
   - Página protegida onde professores podem selecionar arquivo e enviar.
   - Rota `students/import` adicionada e controller responsável.
