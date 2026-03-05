@@ -138,8 +138,9 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - CRUD de atividades com campos de data, descrição e regras.
   - Cálculo automático de penalidades 15d/30d/fechamento.
 - [ ] **Lógica de cálculo de pontuação configurável**
-  - Implementar serviço que aplica regras e valores paramétricos.
-  - Interface para ajuste das pontuações.
+  - Implementar serviço que aplica regras e valores paramétricos.  
+  - Interface para ajuste das pontuações.  
+  ✅ `ScoreCalculator` criado; busca configurações em tabela `configurations`. Seeder padrão insere valores iniciais (+1 presença, +2 entrega no prazo, -2 faltas, -3 atrasos, -1 ocorrência).
 - [ ] **Visualização de commits para avaliação**
   - Buscar commits do GitHub relacionados à atividade.
   - Exibir lista com data e mensagem para o professor.
