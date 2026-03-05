@@ -76,10 +76,11 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - [x] **Definir modelo de dados e ER**
   - Mapear entidades (Aluno, Turma, Presença, Atividade, Occorrência, Commit, Configuração, etc.)
   - Desenhar diagrama de relacionamento e atributos necessários.
-- [ ] **Configurar ambiente Laravel + MySQL + Docker**
+- [x] **Configurar ambiente Laravel + MySQL + Docker**
   - Inicializar projeto Laravel.
   - Criar `docker-compose` com serviços PHP, MySQL e, se necessário, Redis/queue.
-  - Garantir exposição da porta 2026 no host.
+  - Garantir exposição da porta 2026 no host.  
+  ✅ Containers em execução com Sail; porta 2026 mapeada. Base de dados inicializada com migrações.
 - [ ] **Criar migrações para entidades principais**
   - Implementar migrations para cada tabela do modelo de dados.
   - Incluir chaves estrangeiras e índices.
