@@ -81,9 +81,10 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - Criar `docker-compose` com serviços PHP, MySQL e, se necessário, Redis/queue.
   - Garantir exposição da porta 2026 no host.  
   ✅ Containers em execução com Sail; porta 2026 mapeada. Base de dados inicializada com migrações.
-- [ ] **Criar migrações para entidades principais**
+- [x] **Criar migrações para entidades principais**
   - Implementar migrations para cada tabela do modelo de dados.
-  - Incluir chaves estrangeiras e índices.
+  - Incluir chaves estrangeiras e índices.  
+  ✅ Migrations geradas e executadas no banco via Sail.
 - [ ] **Implementar importação XLSX de alunos**
   - Adicionar upload e parser para arquivos Excel.
   - Validar dados e persistir registros na base.
