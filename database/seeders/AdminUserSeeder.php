@@ -13,10 +13,10 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::updateOrCreate([
-            'email' => 'professor@devquest.test',
+            'email' => 'hidalgojunior@gmail.com',
         ], [
-            'name' => 'Professor Demo',
-            'password' => bcrypt('secret'),
+            'name' => 'Professor Principal',
+            'password' => bcrypt('jr34139251'),
             'role' => 'teacher',
         ]);
     }

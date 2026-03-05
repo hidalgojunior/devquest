@@ -121,7 +121,7 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   ✅ Upload funcional e feedback de sucesso.
 
 - [x] **Criar seeder de usuário professor**
-  - Gera conta `professor@devquest.test` / senha `secret` com role teacher.
+  - Gera conta `hidalgojunior@gmail.com` / senha `jr34139251` com role teacher.
 - [ ] **Configurar geração de senha imutável**
   - Gerar senha a partir de CPF, data de nascimento e telefone.
   - Armazenar de forma segura (hash) e impedir edições futuras.
