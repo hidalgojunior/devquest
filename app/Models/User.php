@@ -6,6 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\ClassGroup;
+use App\Models\Presence;
+use App\Models\Submission;
+use App\Models\Occurrence;
 
 class User extends Authenticatable
 {
@@ -21,6 +25,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'rm',
+        'role',
+        'cpf',
+        'phone',
+        'birthdate',
+        'github_username',
+        'class_group_id',
     ];
 
     /**
@@ -43,6 +54,27 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'birthdate' => 'date',
         ];
+    }
+
+    public function classGroup()
+    {
+        return $this->belongsTo(ClassGroup::class);
+    }
+
+    public function presences()
+    {
+        return $this->hasMany(Presence::class);
+    }
+
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class);
+    }
+
+    public function occurrences()
+    {
+        return $this->hasMany(Occurrence::class);
     }
 }
