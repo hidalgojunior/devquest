@@ -111,10 +111,10 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   ✅ Logo copiado para `public/images` e layout básico com header já exibindo a imagem.
 
 > 💡 A permissão de armazenamento deve ser corrigida para evitar erros 500 (`tempnam()` no Blade); execute `php artisan optimize:clear` e garanta `storage/` e `bootstrap/cache` graváveis.
-- [ ] **Implementar cadastro de alunos e validação GitHub**
+- [x] **Implementar cadastro de alunos e validação GitHub**
   - Formulário para inserção individual e verificação automática do usuário GitHub.
-  - Integração com API GitHub ou OAuth para confirmar identidade.
-
+  - Integração com API GitHub ou OAuth para confirmar identidade.  
+  ✅ Registration form and controller in place; GitHub username validated and password generated automatically.
 - [x] **Criar interface de upload XLSX**
   - Página protegida onde professores podem selecionar arquivo e enviar.
   - Rota `students/import` adicionada e controller responsável.
