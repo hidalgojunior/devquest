@@ -19,3 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/students/import', [\App\Http\Controllers\StudentImportController::class, 'show'])->name('students.import.form');
     Route::post('/students/import', [\App\Http\Controllers\StudentImportController::class, 'upload'])->name('students.import');
 });
+
+// public registration
+Route::get('/students/register', [\App\Http\Controllers\StudentRegistrationController::class, 'show'])->name('students.register.form');
+Route::post('/students/register', [\App\Http\Controllers\StudentRegistrationController::class, 'register'])->name('students.register');
