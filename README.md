@@ -150,6 +150,7 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - Preparar endpoints ou mecanismos de comunicação com o serviço.
 - [ ] **Interface usando Tailwind**
   - Aplicar estilos responsivos e a paleta de cores definida.
+  > ⚙️ Para gerar assets e evitar `ViteManifestNotFoundException`, execute `npm install && npm run build` dentro do container (já foi feito).
 - [ ] **Docker-compose com porta 2026**
   - Garantir que todos os containers rodem com mapeamento adequado.
 - [ ] **Testes automatizados**
