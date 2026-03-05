@@ -11,9 +11,7 @@ Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'index'])->middleware('auth')->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/students/import', [\App\Http\Controllers\StudentImportController::class, 'show'])->name('students.import.form');
@@ -21,6 +19,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/presences', [\App\Http\Controllers\PresenceController::class,'index'])->name('presences.index');
     Route::post('/presences', [\App\Http\Controllers\PresenceController::class,'store'])->name('presences.store');
+
+    Route::resource('activities', \App\Http\Controllers\ActivityController::class);
 });
 
 // public registration

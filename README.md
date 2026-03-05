@@ -134,9 +134,14 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - Interface para marcação de presença por data.
   - Relatórios de faltas e presenças por aluno/turma.
   ✅ CRUD básico: seleção da turma e data, marcação de checkboxes e armazenamento de presenças.
-- [ ] **Painel de atividades com prazos e penalidades**
+- [x] **Paniel de atividades com prazos e penalidades**
   - CRUD de atividades com campos de data, descrição e regras.
   - Cálculo automático de penalidades 15d/30d/fechamento.
+  ✅ Criado `ActivityController` com recursos completos.
+
+- [ ] **Área de dashboard do professor**
+  - Link para importar/registrar alunos, marcar presenças e gerenciar atividades.
+  - Exibição de turmas com contagem de alunos.
 - [ ] **Lógica de cálculo de pontuação configurável**
   - Implementar serviço que aplica regras e valores paramétricos.  
   - Interface para ajuste das pontuações.  
