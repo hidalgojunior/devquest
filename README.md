@@ -114,6 +114,14 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - [ ] **Implementar cadastro de alunos e validação GitHub**
   - Formulário para inserção individual e verificação automática do usuário GitHub.
   - Integração com API GitHub ou OAuth para confirmar identidade.
+
+- [x] **Criar interface de upload XLSX**
+  - Página protegida onde professores podem selecionar arquivo e enviar.
+  - Rota `students/import` adicionada e controller responsável.
+  ✅ Upload funcional e feedback de sucesso.
+
+- [x] **Criar seeder de usuário professor**
+  - Gera conta `professor@devquest.test` / senha `secret` com role teacher.
 - [ ] **Configurar geração de senha imutável**
   - Gerar senha a partir de CPF, data de nascimento e telefone.
   - Armazenar de forma segura (hash) e impedir edições futuras.
