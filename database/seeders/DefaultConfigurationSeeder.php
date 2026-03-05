@@ -17,6 +17,8 @@ class DefaultConfigurationSeeder extends Seeder
             'point_on_time' => 2,
             'point_missed' => -2,
             'point_late' => -3,
+            'point_late_15' => -2,
+            'point_late_30' => -5,
             'point_occurrence' => -1,
         ];
         foreach($defaults as $key => $value) {

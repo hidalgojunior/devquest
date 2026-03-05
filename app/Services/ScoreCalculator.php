@@ -27,15 +27,24 @@ class ScoreCalculator
         $onTime = (int) self::config('point_on_time', 2);
         $missed = (int) self::config('point_missed', -2);
         $late = (int) self::config('point_late', -3);
+        $late15 = (int) self::config('point_late_15', -2); // between due+1 and due+15?
+        $late30 = (int) self::config('point_late_30', -5); // beyond due+15 up to 30
         foreach($user->submissions as $sub) {
             if (!$sub->submitted_at) {
                 $points += $missed;
             } else {
-                $due = $sub->activity->due_date;
-                if ($sub->submitted_at->lte(Carbon::parse($due))) {
+                $due = Carbon::parse($sub->activity->due_date);
+                if ($sub->submitted_at->lte($due)) {
                     $points += $onTime;
                 } else {
-                    $points += $late;
+                    $days = $due->diffInDays($sub->submitted_at);
+                    if ($days <= 15) {
+                        $points += $late15;
+                    } elseif ($days <= 30) {
+                        $points += $late30;
+                    } else {
+                        $points += $late30; // max penalty, closed maybe more
+                    }
                 }
             }
         }

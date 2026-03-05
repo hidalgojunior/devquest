@@ -145,7 +145,7 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - [ ] **Lógica de cálculo de pontuação configurável**
   - Implementar serviço que aplica regras e valores paramétricos.  
   - Interface para ajuste das pontuações.  
-  ✅ `ScoreCalculator` criado; busca configurações em tabela `configurations`. Seeder padrão insere valores iniciais (+1 presença, +2 entrega no prazo, -2 faltas, -3 atrasos, -1 ocorrência).
+  ✅ `ScoreCalculator` criado; busca configurações em tabela `configurations`. Seeder padrão insere valores iniciais (+1 presença, +2 entrega no prazo, -2 faltas, -3 atrasos, -1 ocorrência) e agora contempla penalidades graduais (15 e 30 dias).
 - [ ] **Visualização de commits para avaliação**
   - Buscar commits do GitHub relacionados à atividade.
   - Exibir lista com data e mensagem para o professor.
