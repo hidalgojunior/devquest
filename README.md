@@ -130,9 +130,10 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - Tela única com abas para professor e aluno.  
   - Gerenciar roles e redirecionamentos após o login.  
   ✅ LoginController simples criado; rotas `/login`, `/logout`, `/dashboard` definidos. View com abas funcional e redirecionamento após auth.
-- [ ] **Página de registro e histórico de presença**
+- [x] **Página de registro e histórico de presença**
   - Interface para marcação de presença por data.
   - Relatórios de faltas e presenças por aluno/turma.
+  ✅ CRUD básico: seleção da turma e data, marcação de checkboxes e armazenamento de presenças.
 - [ ] **Painel de atividades com prazos e penalidades**
   - CRUD de atividades com campos de data, descrição e regras.
   - Cálculo automático de penalidades 15d/30d/fechamento.

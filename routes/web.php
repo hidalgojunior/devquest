@@ -18,6 +18,9 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/students/import', [\App\Http\Controllers\StudentImportController::class, 'show'])->name('students.import.form');
     Route::post('/students/import', [\App\Http\Controllers\StudentImportController::class, 'upload'])->name('students.import');
+
+    Route::get('/presences', [\App\Http\Controllers\PresenceController::class,'index'])->name('presences.index');
+    Route::post('/presences', [\App\Http\Controllers\PresenceController::class,'store'])->name('presences.store');
 });
 
 // public registration
