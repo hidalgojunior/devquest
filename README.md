@@ -63,6 +63,9 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 
 ### 1. Paleta de cores do DevQuest
 
+> 🛠️ **Recomendação imediata**: após cada alteração de checklist finalize com um `git commit` e `git push` para manter histórico e permitir seeing progress no container.
+
+
 | Elemento         | Cor            | Hex      |
 |------------------|----------------|----------|
 | Cor principal    | Azul Dev       | #1E88E5  |
@@ -99,6 +102,12 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - [ ] **Implementar importação XLSX de alunos**
   - Adicionar upload e parser para arquivos Excel.
   - Validar dados e persistir registros na base.
+
+- [ ] **Usar `logo.png` em layouts**
+  - Mover o arquivo para `public/images` (ou equivalente) e referenciar em `layouts/app.blade.php`.
+  - Exibir no header, formulários de login e tabelas de pontuação.
+
+> 💡 A permissão de armazenamento deve ser corrigida para evitar erros 500 (`tempnam()` no Blade); execute `php artisan optimize:clear` e garanta `storage/` e `bootstrap/cache` graváveis.
 - [ ] **Implementar cadastro de alunos e validação GitHub**
   - Formulário para inserção individual e verificação automática do usuário GitHub.
   - Integração com API GitHub ou OAuth para confirmar identidade.
