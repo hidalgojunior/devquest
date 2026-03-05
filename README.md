@@ -6,7 +6,20 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 
 ## 🧠 Escopo geral
 
+> 🖼️ **Branding & identidade visual**
+> - O arquivo `logo.png` localizado na raiz do projeto será o logotipo padrão da aplicação. Ele deve aparecer:
+>   * no header global,
+>   * em destaque na área de login,
+>   * na tabela de pontuação onde os alunos veem seus níveis/badges.
+> - Às cores e tipografia já definidas juntam-se a conceituação do logo sob o tema *"Mestre do Código"*:
+>   - Escudo pixelado 8/16-bit com cálice+tag HTML </> e espada pixelada;
+>   - Tipografia robusta, com serifa geométrica para *DevQuest*; subtítulo limpo para o slogan;
+>   - Paleta de Roxo Profundo, Verde Terminal e Laranja Queimado para reforçar a atmosfera RPG/fantasia.
+
+
 - Cadastro de alunos (via XLSX) e professores
+
+> 📁 **Base de alunos**: o arquivo Excel `2o. - Ano.xlsx` já está no projeto e contém lista de estudantes divididos em Turma A e Turma B. O sistema deverá respeitar essa separação ao criar turmas, atividades e relatórios.
 - Autenticação: RM + senha gerada a partir de CPF, nascimento e telefone (imutável)
 - Validação de usuário GitHub no cadastro
 - Divisão em 2 turmas (Turma A e Turma B)
@@ -76,15 +89,13 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - [x] **Definir modelo de dados e ER**
   - Mapear entidades (Aluno, Turma, Presença, Atividade, Occorrência, Commit, Configuração, etc.)
   - Desenhar diagrama de relacionamento e atributos necessários.
-- [x] **Configurar ambiente Laravel + MySQL + Docker**
+- [ ] **Configurar ambiente Laravel + MySQL + Docker**
   - Inicializar projeto Laravel.
   - Criar `docker-compose` com serviços PHP, MySQL e, se necessário, Redis/queue.
-  - Garantir exposição da porta 2026 no host.  
-  ✅ Containers em execução com Sail; porta 2026 mapeada. Base de dados inicializada com migrações.
-- [x] **Criar migrações para entidades principais**
+  - Garantir exposição da porta 2026 no host.
+- [ ] **Criar migrações para entidades principais**
   - Implementar migrations para cada tabela do modelo de dados.
-  - Incluir chaves estrangeiras e índices.  
-  ✅ Migrations geradas e executadas no banco via Sail.
+  - Incluir chaves estrangeiras e índices.
 - [ ] **Implementar importação XLSX de alunos**
   - Adicionar upload e parser para arquivos Excel.
   - Validar dados e persistir registros na base.
