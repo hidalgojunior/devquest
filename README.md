@@ -99,9 +99,11 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - [ ] **Criar migrações para entidades principais**
   - Implementar migrations para cada tabela do modelo de dados.
   - Incluir chaves estrangeiras e índices.
-- [ ] **Implementar importação XLSX de alunos**
-  - Adicionar upload e parser para arquivos Excel.
-  - Validar dados e persistir registros na base.
+- [x] **Implementar importação XLSX de alunos**
+  - Adicionar upload e parser para arquivos Excel.  
+  - Validar dados e persistir registros na base.  
+  ✅ Instalada biblioteca maatwebsite/excel e criada implementação `StudentsImport` + comando `php artisan app:import-students {path}` para popular usuários a partir de `2o. - Ano.xlsx` (arquivo renomeado para `alunos.xlsx`).
+  > Note: foi adicionada migration para tornar `users.email` *nullable* e remover índice único, permitindo importação sem e-mails.
 
 - [x] **Usar `logo.png` em layouts**
   - Mover o arquivo para `public/images` (ou equivalente) e referenciar em `layouts/app.blade.php`.
