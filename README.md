@@ -134,15 +134,16 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - Interface para marcação de presença por data.
   - Relatórios de faltas e presenças por aluno/turma.
   ✅ CRUD básico: seleção da turma e data, marcação de checkboxes e armazenamento de presenças.
-- [x] **Paniel de atividades com prazos e penalidades**
+- [x] **Painel de atividades com prazos e penalidades**
   - CRUD de atividades com campos de data, descrição e regras.
-  - Cálculo automático de penalidades 15d/30d/fechamento.
+  - Cálculo automático de penalidades 15d/30d/fechamento.  
   ✅ Criado `ActivityController` com recursos completos.
+  - 🔄 Comando `app:close-expired-activities` agenda fechamento diário de tarefas vencidas (>30 dias).
 
 - [ ] **Área de dashboard do professor**
   - Link para importar/registrar alunos, marcar presenças e gerenciar atividades.
   - Exibição de turmas com contagem de alunos.
-- [ ] **Lógica de cálculo de pontuação configurável**
+- [x] **Lógica de cálculo de pontuação configurável**
   - Implementar serviço que aplica regras e valores paramétricos.  
   - Interface para ajuste das pontuações.  
   ✅ `ScoreCalculator` criado; busca configurações em tabela `configurations`. Seeder padrão insere valores iniciais (+1 presença, +2 entrega no prazo, -2 faltas, -3 atrasos, -1 ocorrência) e agora contempla penalidades graduais (15 e 30 dias).
