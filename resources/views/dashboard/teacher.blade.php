@@ -8,7 +8,7 @@
         <li><a href="{{ route('students.register.form') }}" class="text-blue-600">Registrar aluno manualmente</a></li>
         <li><a href="{{ route('presences.index') }}" class="text-blue-600">Marcar presenças</a></li>
         <li><a href="{{ route('activities.index') }}" class="text-blue-600">Gerenciar atividades</a></li>
-        <li><a href="{{ url('/configurations') }}" class="text-blue-600">Configurar pontuações</a> <!-- TODO: implement page --> </li>
+        <li><a href="{{ route('configurations.index') }}" class="text-blue-600">Configurar pontuações</a></li>
     </ul>
     <h3 class="mt-6 text-xl font-semibold">Turmas</h3>
     <table class="w-full table-auto">

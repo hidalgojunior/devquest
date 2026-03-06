@@ -94,4 +94,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Occurrence::class);
     }
+
+    /**
+     * Convenience helpers for checking user role.
+     */
+    public function isTeacher(): bool
+    {
+        return $this->role === 'teacher';
+    }
+
+    public function isStudent(): bool
+    {
+        return $this->role === 'student';
+    }
 }
