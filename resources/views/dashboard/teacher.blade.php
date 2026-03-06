@@ -1,39 +1,72 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white p-8 rounded shadow">
-    <h2 class="text-2xl font-bold mb-4">{{ __('Bem-vindo') }}, {{ $user->name }} ({{ __('Professor') }})</h2>
-    <ul class="list-disc pl-5">
-        <li><a href="{{ route('students.import.form') }}" class="text-blue-600">{{ __('Importar alunos') }}</a></li>
-        <li><a href="{{ route('students.register.form') }}" class="text-blue-600">{{ __('Registrar aluno manualmente') }}</a></li>
-        <li><a href="{{ route('presences.index') }}" class="text-blue-600">{{ __('Marcar presenças') }}</a></li>
-        <li><a href="{{ route('activities.index') }}" class="text-blue-600">{{ __('Gerenciar atividades') }}</a></li>
-        <li><a href="{{ route('configurations.index') }}" class="text-blue-600">{{ __('Configurar pontuações') }}</a></li>
-    </ul>
-    <h3 class="mt-6 text-xl font-semibold">{{ __('Turmas') }}</h3>
-    <table class="w-full table-auto">
-        <thead><tr><th>{{ __('Nome') }}</th><th>{{ __('Quantidade de alunos') }}</th></tr></thead>
-        <tbody>
-            @foreach($groups as $g)
-                <tr><td>{{ $g->name }}</td><td>{{ $g->users_count }}</td></tr>
-            @endforeach
-        </tbody>
-    </table>
+<div class="space-y-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="{{ route('students.import.form') }}" class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+            <h3 class="font-semibold text-lg">Importar alunos</h3>
+        </a>
+        <a href="{{ route('students.register.form') }}" class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+            <h3 class="font-semibold text-lg">Registrar aluno</h3>
+        </a>
+        <a href="{{ route('presences.index') }}" class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+            <h3 class="font-semibold text-lg">Marcar presenças</h3>
+        </a>
+        <a href="{{ route('activities.index') }}" class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+            <h3 class="font-semibold text-lg">Gerenciar atividades</h3>
+        </a>
+        <a href="{{ route('configurations.index') }}" class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+            <h3 class="font-semibold text-lg">Configurar pontuações</h3>
+        </a>
+    </div>
 
-    <h3 class="mt-6 text-xl font-semibold">{{ __('Ranking de Pontos') }}</h3>
-    <table class="w-full table-auto">
-        <thead><tr><th>{{ __('Aluno') }}</th><th>{{ __('Pontos') }}</th><th>{{ __('Nível') }}</th><th>{{ __('Badge') }}</th></tr></thead>
-        <tbody>
-            @foreach($ranking as $r)
-                <tr>
-                    <td>{{ $r['user']->name }}</td>
-                    <td>{{ number_format($r['points'],0,__(','),__('.')) }}</td>
-                    <td>{{ $r['level'] }}</td>
-                    <td>{{ $r['badge'] }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-2">Turmas</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto divide-y divide-gray-200">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 text-left">Nome</th>
+                        <th class="py-2 px-4 text-left">Quantidade de alunos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($groups as $g)
+                    <tr class="odd:bg-white even:bg-gray-50">
+                        <td class="py-2 px-4">{{ $g->name }}</td>
+                        <td class="py-2 px-4">{{ $g->users_count }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-2">Ranking de Pontos</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto divide-y divide-gray-200">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 text-left">Aluno</th>
+                        <th class="py-2 px-4 text-left">Pontos</th>
+                        <th class="py-2 px-4 text-left">Nível</th>
+                        <th class="py-2 px-4 text-left">Badge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($ranking as $r)
+                    <tr class="odd:bg-white even:bg-gray-50">
+                        <td class="py-2 px-4">{{ $r['user']->name }}</td>
+                        <td class="py-2 px-4">{{ number_format($r['points'],0,',','.') }}</td>
+                        <td class="py-2 px-4">{{ $r['level'] }}</td>
+                        <td class="py-2 px-4">{{ $r['badge'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 @endsection
 

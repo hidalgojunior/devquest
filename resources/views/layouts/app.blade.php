@@ -25,19 +25,19 @@
         @auth
             <nav id="nav-links" class="hidden md:block bg-gray-200 p-4">
                 <div class="max-w-7xl mx-auto flex flex-wrap items-center">
-                    <a href="{{ route('dashboard') }}" class="mr-4 text-blue-700 font-semibold">{{ __('Dashboard') }}</a>
+                    <a href="{{ route('dashboard') }}" class="mr-4 text-blue-700 font-semibold">Dashboard</a>
                     @if(auth()->user()->isTeacher())
-                        <a href="{{ route('students.import.form') }}" class="mr-4 text-blue-600">{{ __('Importar alunos') }}</a>
-                        <a href="{{ route('presences.index') }}" class="mr-4 text-blue-600">{{ __('Presenças') }}</a>
-                        <a href="{{ route('activities.index') }}" class="mr-4 text-blue-600">{{ __('Atividades') }}</a>
-                        <a href="{{ route('configurations.index') }}" class="mr-4 text-blue-600">{{ __('Configurações') }}</a>
+                        <a href="{{ route('students.import.form') }}" class="mr-4 text-blue-600">Importar alunos</a>
+                        <a href="{{ route('presences.index') }}" class="mr-4 text-blue-600">Presenças</a>
+                        <a href="{{ route('activities.index') }}" class="mr-4 text-blue-600">Atividades</a>
+                        <a href="{{ route('configurations.index') }}" class="mr-4 text-blue-600">Configurações</a>
                     @else
-                        <a href="{{ route('activities.index') }}" class="mr-4 text-blue-600">{{ __('Atividades') }}</a>
-                        <a href="{{ route('presences.index') }}" class="mr-4 text-blue-600">{{ __('Minhas presenças') }}</a>
+                        <a href="{{ route('activities.index') }}" class="mr-4 text-blue-600">Atividades</a>
+                        <a href="{{ route('presences.index') }}" class="mr-4 text-blue-600">Minhas presenças</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
-                        <button type="submit" class="text-red-600">{{ __('Sair') }}</button>
+                        <button type="submit" class="text-red-600">Sair</button>
                     </form>
                 </div>
             </nav>

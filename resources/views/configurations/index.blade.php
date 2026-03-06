@@ -1,18 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white p-8 rounded shadow">
-    <h2 class="text-xl font-semibold mb-4">{{ __('Configurações de Pontuação') }}</h2>
-    @if(session('status'))<p class="text-green-600 mb-4">{{ session('status') }}</p>@endif
+<div class="bg-white p-8 rounded-lg shadow">
+    <h2 class="text-2xl font-semibold mb-4">Configurações de Pontuação</h2>
+    @if(session('status'))
+        <p class="text-green-600 mb-4">{{ session('status') }}</p>
+    @endif
     <div class="overflow-x-auto">
-        <table class="w-full table-auto">
-            <thead><tr><th>{{ __('Chave') }}</th><th>{{ __('Valor') }}</th><th>{{ __('Ação') }}</th></tr></thead>
+        <table class="w-full table-auto divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="py-2 px-4 text-left">Chave</th>
+                    <th class="py-2 px-4 text-left">Valor</th>
+                    <th class="py-2 px-4 text-left">Ação</th>
+                </tr>
+            </thead>
             <tbody>
                 @foreach($configs as $cfg)
-                <tr>
-                    <td>{{ $cfg->key }}</td>
-                    <td>{{ $cfg->value }}</td>
-                    <td><a href="{{ route('configurations.edit',$cfg) }}" class="text-blue-600">{{ __('Editar') }}</a></td>
+                <tr class="odd:bg-white even:bg-gray-50">
+                    <td class="py-2 px-4">{{ $cfg->key }}</td>
+                    <td class="py-2 px-4">{{ $cfg->value }}</td>
+                    <td class="py-2 px-4">
+                        <a href="{{ route('configurations.edit',$cfg) }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-1 px-3 rounded-md transition">
+                            Editar
+                        </a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

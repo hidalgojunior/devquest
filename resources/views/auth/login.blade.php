@@ -8,8 +8,8 @@
 
     <div class="mb-4">
         <nav class="flex space-x-4" aria-label="Tabs">
-            <a href="#student" class="tab-link px-3 py-2 font-medium text-sm rounded-md bg-blue-100" data-target="student">{{ __('Aluno') }}</a>
-            <a href="#teacher" class="tab-link px-3 py-2 font-medium text-sm rounded-md text-gray-500 hover:text-gray-700" data-target="teacher">{{ __('Professor') }}</a>
+            <a href="#student" class="tab-link px-3 py-2 font-medium text-sm rounded-md bg-blue-100" data-target="student">Aluno</a>
+            <a href="#teacher" class="tab-link px-3 py-2 font-medium text-sm rounded-md text-gray-500 hover:text-gray-700" data-target="teacher">Professor</a>
         </nav>
     </div>
 
@@ -18,14 +18,14 @@
             @csrf
             <input type="hidden" name="role" value="student">
             <div class="mb-4">
-                <label for="rm" class="block text-sm font-medium">{{ __('RM') }}</label>
+                <label for="rm" class="block text-sm font-medium">RM</label>
                 <input id="rm" name="rm" type="text" class="mt-1 block w-full border-gray-300 rounded-md" required>
             </div>
             <div class="mb-4">
-                <label for="password" class="block text-sm font-medium">{{ __('Senha') }}</label>
+                <label for="password" class="block text-sm font-medium">Senha</label>
                 <input id="password" name="password" type="password" class="mt-1 block w-full border-gray-300 rounded-md" required>
             </div>
-            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md">{{ __('Entrar') }}</button>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md">Entrar</button>
         </form>
     </div>
 
@@ -34,14 +34,14 @@
             @csrf
             <input type="hidden" name="role" value="teacher">
             <div class="mb-4">
-                <label for="email" class="block text-sm font-medium">{{ __('Email') }}</label>
+                <label for="email" class="block text-sm font-medium">Email</label>
                 <input id="email" name="email" type="email" class="mt-1 block w-full border-gray-300 rounded-md" required>
             </div>
             <div class="mb-4">
-                <label for="password2" class="block text-sm font-medium">{{ __('Senha') }}</label>
+                <label for="password2" class="block text-sm font-medium">Senha</label>
                 <input id="password2" name="password" type="password" class="mt-1 block w-full border-gray-300 rounded-md" required>
             </div>
-            <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md">{{ __('Entrar') }}</button>
+            <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md">Entrar</button>
         </form>
     </div>
 </div>
