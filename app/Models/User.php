@@ -34,6 +34,8 @@ class User extends Authenticatable
         'github_username',
         'class_group_id',
         'password_locked',
+        'locale',
+        'timezone',
     ];
 
     /**

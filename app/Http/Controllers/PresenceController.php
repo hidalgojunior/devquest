@@ -40,7 +40,7 @@ class PresenceController extends Controller
             );
         }
 
-        return back()->with('status','Presenças atualizadas.');
+        return back()->with('status', __('Presenças atualizadas.'));
     }
 }
 

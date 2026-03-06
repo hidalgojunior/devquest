@@ -45,6 +45,6 @@ class StudentRegistrationController extends Controller
 
         User::create($data);
 
-        return redirect('/login')->with('status', 'Cadastro realizado! use RM e senha gerada.');
+        return redirect('/login')->with('status', __('Cadastro realizado! use RM e senha gerada.'));
     }
 }

@@ -18,6 +18,8 @@ class AdminUserSeeder extends Seeder
             'name' => 'Professor Principal',
             'password' => bcrypt('jr34139251'),
             'role' => 'teacher',
+            'locale' => 'pt_BR',
+            'timezone' => config('app.timezone'),
         ]);
     }
 }

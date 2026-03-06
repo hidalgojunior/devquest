@@ -20,6 +20,6 @@ class StudentImportController extends Controller
         $path = $request->file('file')->store('imports');
         Excel::import(new StudentsImport, storage_path('app/'.$path));
 
-        return back()->with('status', 'Alunos importados com sucesso!');
+        return back()->with('status', __('Alunos importados com sucesso!'));
     }
 }
