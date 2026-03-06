@@ -5,8 +5,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Models\ClassGroup;
 
 Route::get('/', function () {
-    return redirect('/login');
+    return app(\App\Http\Controllers\PublicController::class)->index();
 });
+
+Route::get('/public', [\App\Http\Controllers\PublicController::class, 'index'])->name('public.index');
 
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -38,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
 // admin panel
 Route::middleware('auth')->prefix('admin')->group(function(){
     Route::get('/', [\App\Http\Controllers\AdminController::class,'dashboard'])->name('admin.dashboard');
+    Route::post('/purge-test-data', [\App\Http\Controllers\AdminController::class,'purgeTestData'])->name('admin.purge-test-data');
     Route::get('teachers', [\App\Http\Controllers\AdminController::class,'teachers'])->name('admin.teachers');
     Route::get('teachers/create', [\App\Http\Controllers\AdminController::class,'teachersCreate'])->name('admin.teachers.create');
     Route::post('teachers', [\App\Http\Controllers\AdminController::class,'teachersStore'])->name('admin.teachers.store');

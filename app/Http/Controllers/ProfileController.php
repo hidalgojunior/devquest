@@ -19,19 +19,19 @@ class ProfileController extends Controller
 
         $rules = [
             'name' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:30',
+            'phone' => ['nullable','regex:/^(\d{10,11}|\(\d{2}\)\s?\d{4,5}-\d{4})$/'],
             'github_username' => 'nullable|string|max:255|unique:users,github_username,'.$user->id,
             'github_repository' => 'nullable|string|max:255',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:3072',
         ];
 
         if ($user->isStudent()) {
-            $rules['cpf'] = 'nullable|string|max:20';
+            $rules['cpf'] = ['nullable','regex:/^(\d{11}|\d{3}\.\d{3}\.\d{3}-\d{2})$/'];
         }
 
         if ($user->isTeacher() || $user->isAdmin()) {
             $rules['instagram'] = 'nullable|string|max:255';
-            $rules['whatsapp'] = 'nullable|string|max:30';
+            $rules['whatsapp'] = ['nullable','regex:/^(\d{10,11}|\(\d{2}\)\s?\d{4,5}-\d{4})$/'];
         }
 
         $data = $request->validate($rules);

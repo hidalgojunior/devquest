@@ -27,13 +27,13 @@
 
         <div>
             <label class="block text-sm font-medium">Telefone</label>
-            <input name="phone" value="{{ old('phone',$user->phone) }}" class="mt-1 block w-full border rounded-md px-3 py-2">
+            <input name="phone" id="phone" value="{{ old('phone',$user->phone) }}" class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="(11) 98888-7777" pattern="^(\(\d{2}\)\s?\d{4,5}-\d{4}|\d{10,11})$">
         </div>
 
         @if($user->isStudent())
             <div>
                 <label class="block text-sm font-medium">CPF</label>
-                <input name="cpf" value="{{ old('cpf',$user->cpf) }}" class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="000.000.000-00">
+                <input name="cpf" id="cpf" value="{{ old('cpf',$user->cpf) }}" class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="000.000.000-00" pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$">
             </div>
         @endif
 
@@ -56,7 +56,7 @@
 
             <div>
                 <label class="block text-sm font-medium">WhatsApp</label>
-                <input name="whatsapp" value="{{ old('whatsapp',$user->whatsapp) }}" class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="(11) 99999-9999">
+                <input name="whatsapp" id="whatsapp" value="{{ old('whatsapp',$user->whatsapp) }}" class="mt-1 block w-full border rounded-md px-3 py-2" placeholder="(11) 99999-9999" pattern="^(\(\d{2}\)\s?\d{4,5}-\d{4}|\d{10,11})$">
             </div>
         @endif
 
@@ -65,5 +65,32 @@
         </div>
     </form>
 </div>
+
+<script>
+    const onlyDigits = (value) => value.replace(/\D/g, '');
+
+    const maskCpf = (value) => {
+        const d = onlyDigits(value).slice(0,11);
+        return d.replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    };
+
+    const maskPhone = (value) => {
+        const d = onlyDigits(value).slice(0,11);
+        if (d.length <= 10) {
+            return d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d{1,4})$/, '$1-$2');
+        }
+        return d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d{1,4})$/, '$1-$2');
+    };
+
+    const cpf = document.getElementById('cpf');
+    const phone = document.getElementById('phone');
+    const whatsapp = document.getElementById('whatsapp');
+
+    cpf?.addEventListener('input', (e) => e.target.value = maskCpf(e.target.value));
+    phone?.addEventListener('input', (e) => e.target.value = maskPhone(e.target.value));
+    whatsapp?.addEventListener('input', (e) => e.target.value = maskPhone(e.target.value));
+</script>
 @endsection
 

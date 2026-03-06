@@ -103,6 +103,9 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - Perfil completo de usuários com foto e campos de contato por papel (aluno/professor).
 - Integração de entregas por GitHub com base em `github_username` + repositório principal.
 - A atividade passa a usar o nome da pasta no repositório (mesmo valor do título da atividade).
+- Área pública aberta em `/` e `/public` com explicação do projeto, penalidades, ranking geral e destaques Turma A/B por componente.
+- Ação administrativa para apagar dados de teste com senha de autorização `@Jr34139251@`.
+- Máscaras no frontend e validações regex rígidas para CPF, telefone e WhatsApp.
 - Histórico de submissões e commits integrado.
 - Ranking, níveis e badges implementados com destaque a top3.
 - Configurações administrativas funcionando.

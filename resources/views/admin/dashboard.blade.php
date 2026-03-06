@@ -26,6 +26,22 @@
     <canvas id="scheduleChart" class="w-full h-48"></canvas>
 </div>
 
+<div class="mt-6 bg-white rounded-lg p-4 shadow border border-red-200">
+    <h3 class="text-lg font-semibold text-red-700">Apagar dados de teste</h3>
+    <p class="text-sm text-gray-600 mb-3">Ação administrativa: remove dados operacionais de teste (alunos, turmas, componentes, atividades, presenças, chats, submissões e commits).</p>
+    @if($errors->has('admin_secret'))
+        <p class="text-sm text-red-600 mb-2">{{ $errors->first('admin_secret') }}</p>
+    @endif
+    @if(session('status'))
+        <p class="text-sm text-green-600 mb-2">{{ session('status') }}</p>
+    @endif
+    <form method="POST" action="{{ route('admin.purge-test-data') }}" class="flex flex-col sm:flex-row gap-2">
+        @csrf
+        <input type="password" name="admin_secret" placeholder="Informe a senha de autorização" class="border rounded px-3 py-2 flex-1" required>
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded" onclick="return confirm('Confirma apagar os dados de teste?')">Apagar dados</button>
+    </form>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded',function(){

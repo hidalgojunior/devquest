@@ -21,8 +21,8 @@ class StudentRegistrationController extends Controller
         $data = $request->validate([
             'rm' => 'required|unique:users,rm',
             'name' => 'required|string|max:255',
-            'cpf' => 'required|string',
-            'phone' => 'required|string',
+            'cpf' => ['required','regex:/^(\d{11}|\d{3}\.\d{3}\.\d{3}-\d{2})$/'],
+            'phone' => ['required','regex:/^(\d{10,11}|\(\d{2}\)\s?\d{4,5}-\d{4})$/'],
             'birthdate' => 'required|date',
             'github_username' => 'required|string',
             'class_group_id' => 'required|exists:class_groups,id',
