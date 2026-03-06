@@ -19,5 +19,20 @@
             @endforeach
         </tbody>
     </table>
+
+    <h3 class="mt-6 text-xl font-semibold">Ranking de Pontos</h3>
+    <table class="w-full table-auto">
+        <thead><tr><th>Aluno</th><th>Pontos</th><th>Nível</th><th>Badge</th></tr></thead>
+        <tbody>
+            @foreach($ranking as $r)
+                <tr>
+                    <td>{{ $r['user']->name }}</td>
+                    <td>{{ $r['points'] }}</td>
+                    <td>{{ $r['level'] }}</td>
+                    <td>{{ $r['badge'] }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

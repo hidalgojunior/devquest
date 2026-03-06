@@ -152,10 +152,10 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
   - Exibir lista com data e mensagem para o professor.  
   ✅ Implementado `SubmissionController@show` que carrega commits na primeira visualização e os armazena em `git_commits`.- [ ] **Painel de administração (configurações gerais)**
   - Área para ajustar pesos, limites de isenção e controle de turmas.
-- [ ] **Gamificação com níveis, badges e ranking**
-  - Calcular XP, atribuir níveis e exibir badges.
-  - Ranking com cores especiais para top 3.
-- [ ] **Integração com Waha**
+- [x] **Gamificação com níveis, badges e ranking**
+  - Calcular XP, atribuir níveis e exibir badges.  
+  - Ranking com cores especiais para top 3.  
+  ✅ `ScoreCalculator::levelAndBadge` cria nível/badge; lista ordenada exibida no dashboard do professor.- [ ] **Integração com Waha**
   - Preparar endpoints ou mecanismos de comunicação com o serviço.
 - [ ] **Interface usando Tailwind**
   - Aplicar estilos responsivos e a paleta de cores definida.

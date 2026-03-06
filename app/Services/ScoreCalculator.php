@@ -57,4 +57,23 @@ class ScoreCalculator
 
         return $points;
     }
+
+    public static function levelAndBadge($points)
+    {
+        $tiers = [
+            700 => ['Nível 7','Mestre DevQuest'],
+            600 => ['Nível 6','Arquiteto'],
+            500 => ['Nível 5','Caçador de Bugs'],
+            400 => ['Nível 4','Mestre das Funções'],
+            300 => ['Nível 3','Programador'],
+            200 => ['Nível 2','Aprendiz'],
+            100 => ['Nível 1','Explorador'],
+        ];
+        foreach($tiers as $threshold=>$info) {
+            if ($points >= $threshold) {
+                return ['level'=>$info[0],'badge'=>$info[1]];
+            }
+        }
+        return ['level'=>'Nível 0','badge'=>'Nenhuma'];
+    }
 }
