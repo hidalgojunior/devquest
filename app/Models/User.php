@@ -68,6 +68,17 @@ class User extends Authenticatable
         return $this->belongsTo(ClassGroup::class);
     }
 
+    // chat relationships
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class,'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class,'receiver_id');
+    }
+
     /**
      * Set the password attribute, ignoring changes if locked.
      */

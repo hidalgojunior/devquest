@@ -34,6 +34,27 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/presences', [\App\Http\Controllers\PresenceController::class,'index'])->name('presences.index');
     Route::post('/presences', [\App\Http\Controllers\PresenceController::class,'store'])->name('presences.store');
 
+// admin panel
+Route::middleware('auth')->prefix('admin')->group(function(){
+    Route::get('/', [\App\Http\Controllers\AdminController::class,'dashboard'])->name('admin.dashboard');
+    Route::get('teachers', [\App\Http\Controllers\AdminController::class,'teachers'])->name('admin.teachers');
+    Route::get('teachers/create', [\App\Http\Controllers\AdminController::class,'teachersCreate'])->name('admin.teachers.create');
+    Route::post('teachers', [\App\Http\Controllers\AdminController::class,'teachersStore'])->name('admin.teachers.store');
+    Route::get('subjects', [\App\Http\Controllers\AdminController::class,'subjects'])->name('admin.subjects');
+    Route::get('subjects/create', [\App\Http\Controllers\AdminController::class,'subjectsCreate'])->name('admin.subjects.create');
+    Route::post('subjects', [\App\Http\Controllers\AdminController::class,'subjectsStore'])->name('admin.subjects.store');
+    Route::get('groups', [\App\Http\Controllers\AdminController::class,'groups'])->name('admin.groups');
+    Route::get('groups/create', [\App\Http\Controllers\AdminController::class,'groupsCreate'])->name('admin.groups.create');
+    Route::post('groups', [\App\Http\Controllers\AdminController::class,'groupsStore'])->name('admin.groups.store');
+});
+
+// chat
+Route::middleware('auth')->prefix('chat')->group(function(){
+    Route::get('/', [\App\Http\Controllers\ChatController::class,'index'])->name('chat.index');
+    Route::get('{id}', [\App\Http\Controllers\ChatController::class,'show'])->name('chat.show');
+    Route::post('{id}', [\App\Http\Controllers\ChatController::class,'store'])->name('chat.store');
+});
+
     Route::resource('activities', \App\Http\Controllers\ActivityController::class);
 
     Route::resource('configurations', \App\Http\Controllers\ConfigurationController::class)->only(['index','edit','update']);
