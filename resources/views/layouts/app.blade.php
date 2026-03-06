@@ -25,7 +25,7 @@
                         <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim(auth()->user()->email))) }}?s=32&d=identicon" alt="" class="h-8 w-8 rounded-full cursor-pointer" id="profile-menu-button">
                         <div id="profile-menu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
                             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="profile-menu-button">
-                                <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Meu perfil</a>
+                                <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Meu perfil</a>
                                 @if(auth()->user()->isAdmin())
                                     <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Admin</a>
                                 @endif
