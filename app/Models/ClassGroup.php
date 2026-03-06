@@ -9,7 +9,9 @@ use App\Models\Content;
 
 class ClassGroup extends Model
 {
-    protected $fillable = ['name','course','component'];
+    protected $fillable = ['name','course','component','qr_open'];
+
+    protected $casts = ['qr_open' => 'boolean'];
 
     public function users()
     {

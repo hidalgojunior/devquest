@@ -35,7 +35,9 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="py-2 px-4 text-left">Nome</th>
-                    <th class="py-2 px-4 text-left">Quantidade de alunos</th>
+                    <th class="py-2 px-4 text-left">Alunos</th>
+                    <th class="py-2 px-4 text-left">QR aberto?</th>
+                    <th class="py-2 px-4 text-left">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,13 +45,13 @@
                 <tr class="odd:bg-white even:bg-gray-50">
                     <td class="py-2 px-4">{{ $g->name }}</td>
                     <td class="py-2 px-4">{{ $g->users_count }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
+                    <td class="py-2 px-4">{{ $g->qr_open ? 'Sim' : 'Não' }}</td>
+                    <td class="py-2 px-4">
+                        <form method="POST" action="{{ route('class-groups.toggle-qr',$g) }}" class="inline">
+                            @csrf
+                            <button class="text-sm text-blue-600">{{ $g->qr_open ? 'Fechar QR' : 'Abrir QR' }}</button>
+                        </form>
+                    </td>
 <!-- ranking table -->
 <div class="mt-6 bg-white p-6 rounded-lg shadow">
     <h3 class="text-xl font-semibold mb-2">Ranking de Pontos</h3>

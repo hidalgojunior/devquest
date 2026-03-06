@@ -27,6 +27,22 @@
             <label class="block text-sm font-medium">Prazo</label>
             <input type="date" name="due_date" class="mt-1 block w-full border-gray-300 rounded-md" value="{{ old('due_date',$activity->due_date ?? '') }}" required>
         </div>
+        <div class="mb-4">
+            <label class="inline-flex items-center">
+                <input type="checkbox" name="open_to_all" value="1" class="form-checkbox" {{ old('open_to_all',$activity->open_to_all) ? 'checked' : '' }}>
+                <span class="ml-2">Disponível para todas as turmas</span>
+            </label>
+        </div>
+        <div class="mb-4">
+            <label class="inline-flex items-center">
+                <input type="checkbox" name="is_draft" value="1" class="form-checkbox" {{ old('is_draft',$activity->is_draft) ? 'checked' : '' }}>
+                <span class="ml-2">Salvar como rascunho (não visível para alunos)</span>
+            </label>
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-medium">Visível a partir de</label>
+            <input type="datetime-local" name="visible_from" class="mt-1 block w-full border-gray-300 rounded-md" value="{{ old('visible_from', optional($activity->visible_from)->format('Y-m-d\TH:i')) }}">
+        </div>
         <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Salvar</button>
     </form>
 </div>

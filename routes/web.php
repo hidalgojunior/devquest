@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\ClassGroup;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -11,7 +12,20 @@ Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// toggle qr code availability for class
+Route::post('/class-groups/{group}/toggle-qr', function(ClassGroup $group){
+    if(auth()->user()->role !== 'teacher') abort(403);
+    $group->qr_open = !$group->qr_open;
+    $group->save();
+    return back();
+})->middleware('auth')->name('class-groups.toggle-qr');
+
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'index'])->middleware('auth')->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class,'edit'])->name('profile.edit');
+    Route::put('/profile', [\App\Http\Controllers\ProfileController::class,'update'])->name('profile.update');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/students/import', [\App\Http\Controllers\StudentImportController::class, 'show'])->name('students.import.form');

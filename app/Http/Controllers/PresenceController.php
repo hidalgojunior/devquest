@@ -12,6 +12,22 @@ class PresenceController extends Controller
 {
     public function index(Request $request)
     {
+        $user = auth()->user();
+        // student view
+        if($user->isStudent()){
+            $class = $user->classGroup;
+            if(!$class || !$class->qr_open){
+                // show log only
+                $records = Presence::where('user_id',$user->id)->orderBy('date','desc')->get();
+                return view('presences.student', compact('records'));
+            }
+            // student may mark today's presence when QR open
+            $date = Carbon::today()->toDateString();
+            $present = Presence::where('user_id',$user->id)->where('date',$date)->value('present');
+            return view('presences.mark', compact('date','present'));
+        }
+
+        // teacher/admin view
         $date = $request->get('date', Carbon::today()->toDateString());
         $groups = ClassGroup::all();
         $selected = $request->get('group_id');
@@ -40,7 +56,7 @@ class PresenceController extends Controller
             );
         }
 
-        return back()->with('status', __('Presenças atualizadas.'));
+        return back()->with('status', 'Presenças atualizadas.');
     }
 }
 

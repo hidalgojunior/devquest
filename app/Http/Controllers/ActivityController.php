@@ -14,7 +14,20 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $activities = Activity::with('classGroup')->orderBy('due_date')->get();
+        $activities = Activity::with('classGroup')->orderBy('due_date');
+        if(auth()->user()->isStudent()){
+            $user = auth()->user();
+            $activities = $activities->where(function($q) use($user){
+                $q->where('open_to_all', true)
+                  ->orWhere('class_group_id', $user->class_group_id);
+            })
+            ->where('is_draft', false)
+            ->where(function($q){
+                $q->whereNull('visible_from')
+                  ->orWhere('visible_from','<=',now());
+            });
+        }
+        $activities = $activities->get();
         return view('activities.index', compact('activities'));
     }
 
@@ -37,13 +50,19 @@ class ActivityController extends Controller
             'description' => 'nullable|string',
             'start_date' => 'nullable|date',
             'due_date' => 'nullable|date',
-            'class_group_id' => 'required|exists:class_groups,id',
+            'class_group_id' => 'nullable|exists:class_groups,id',
             'is_bonus' => 'boolean',
+            'open_to_all' => 'boolean',
+            'is_draft' => 'boolean',
+            'visible_from' => 'nullable|date',
         ]);
         $data['is_bonus'] = $request->has('is_bonus');
 
+        if(!empty($data['open_to_all'])){
+            $data['class_group_id'] = null;
+        }
         Activity::create($data);
-        return redirect()->route('activities.index')->with('status', __('Atividade criada.'));
+        return redirect()->route('activities.index')->with('status', 'Atividade criada.');
     }
 
     /**
@@ -76,14 +95,20 @@ class ActivityController extends Controller
             'description' => 'nullable|string',
             'start_date' => 'nullable|date',
             'due_date' => 'nullable|date',
-            'class_group_id' => 'required|exists:class_groups,id',
+            'class_group_id' => 'nullable|exists:class_groups,id',
             'is_bonus' => 'boolean',
             'closed' => 'boolean',
+            'open_to_all' => 'boolean',
+            'is_draft' => 'boolean',
+            'visible_from' => 'nullable|date',
         ]);
         $data['is_bonus'] = $request->has('is_bonus');
         $data['closed'] = $request->has('closed');
+        if(!empty($data['open_to_all'])){
+            $data['class_group_id'] = null;
+        }
         $activity->update($data);
-        return redirect()->route('activities.index')->with('status', __('Atividade atualizada.'));
+        return redirect()->route('activities.index')->with('status', 'Atividade atualizada.');
     }
 
     /**
@@ -93,6 +118,6 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
         $activity->delete();
-        return back()->with('status', __('Atividade removida.'));
+        return back()->with('status', 'Atividade removida.');
     }
 }
