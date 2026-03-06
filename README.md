@@ -96,6 +96,7 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - Autenticação com abas para aluno/professor funcionando.
 - Marca textual (`DevQuest`) adotada em todas as telas.
 - Dashboard e navegação concluídos (sidebar direita, off‑canvas, responsivo).
+- Dashboard e navegação refinados com contraste melhorado (itens cinza corrigidos).
 - Lógica de pontuação configurável, com painel para ajustes.
 - CRUD de atividades completo, incluindo visibilidade, rascunho, escopo e penalidades.
 - Controle de QR Code por turma; presenças gravam tópico e material.
@@ -103,6 +104,7 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - Ranking, níveis e badges implementados com destaque a top3.
 - Configurações administrativas funcionando.
 - Internacionalização removida, fuso/locale fixos.
+- Modo escuro funcional com persistência via `localStorage`.
 
 ## 🛠️ Pendências e prioridades
 
@@ -114,7 +116,7 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 ### Média prioridade
 1. Implementar integração com Waha (se necessário).
 2. Adicionar suporte a upload de material na aula (PDF, links).
-3. Refinar responsividade e UI (dark mode, overlays, iconografia).
+3. Refinar responsividade e UI (overlays, iconografia e microinterações).
 
 ### Baixa prioridade
 1. Desenvolver relatórios extras e notificações.
