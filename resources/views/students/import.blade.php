@@ -1,25 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header">{{ __('Importar alunos') }}</div>
-        <div class="card-body">
-            @if(session('status'))
-                <div class="alert alert-success">{{ session('status') }}</div>
-            @endif
+<div class="bg-white p-8 rounded shadow max-w-md mx-auto">
+    <h2 class="text-xl font-semibold mb-4">{{ __('Importar alunos') }}</h2>
+    @if(session('status'))
+        <div class="text-green-600 mb-4">{{ session('status') }}</div>
+    @endif
 
-            <form action="{{ route('students.import') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="mb-3">
-                    <label for="file" class="form-label">{{ __('Arquivo XLSX') }}</label>
-                    <input type="file" name="file" id="file" class="form-control" required>
-                    @error('file')<p class="text-danger small">{{ $message }}</p>@enderror
-                </div>
-                <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
-            </form>
+    <form action="{{ route('students.import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-4">
+            <label for="file" class="block text-sm font-medium">{{ __('Arquivo XLSX') }}</label>
+            <input type="file" name="file" id="file" class="mt-1" required>
+            @error('file')<p class="text-red-600 text-sm">{{ $message }}</p>@enderror
         </div>
-    </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">{{ __('Enviar') }}</button>
+    </form>
 </div>
 @endsection
 

@@ -4,60 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevQuest</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- optional: include existing Vite assets if needed -->
+    @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-light bg-white shadow mb-0">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('dashboard') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="DevQuest Logo" height="30">
-                DevQuest
-            </a>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-4 px-6 flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="{{ asset('images/logo.png') }}" alt="DevQuest Logo" class="h-12 mr-4">
+                <h1 class="text-2xl font-bold">DevQuest</h1>
+            </div>
             @auth
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="md:hidden" onclick="toggleMenu()" aria-label="Toggle menu">
+                    <!-- simple hamburger icon -->
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             @endauth
         </div>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row">
-            @auth
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
-                        @if(auth()->user()->isTeacher())
-                            <li class="nav-item"><a class="nav-link" href="{{ route('students.import.form') }}">{{ __('Importar alunos') }}</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('presences.index') }}">{{ __('Presenças') }}</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('activities.index') }}">{{ __('Atividades') }}</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('configurations.index') }}">{{ __('Configurações') }}</a></li>
-                        @else
-                            <li class="nav-item"><a class="nav-link" href="{{ route('activities.index') }}">{{ __('Atividades') }}</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('presences.index') }}">{{ __('Minhas presenças') }}</a></li>
-                        @endif
-                        <li class="nav-item"><a class="nav-link" href="{{ route('profile.edit') }}">{{ __('Perfil') }}</a></li>
-                        <li class="nav-item">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="nav-link btn btn-link">{{ __('Sair') }}</button>
-                            </form>
-                        </li>
-                    </ul>
+        @auth
+            <nav id="nav-links" class="hidden md:block bg-gray-200 p-4">
+                <div class="max-w-7xl mx-auto flex flex-wrap items-center">
+                    <a href="{{ route('dashboard') }}" class="mr-4 text-blue-700 font-semibold">{{ __('Dashboard') }}</a>
+                    @if(auth()->user()->isTeacher())
+                        <a href="{{ route('students.import.form') }}" class="mr-4 text-blue-600">{{ __('Importar alunos') }}</a>
+                        <a href="{{ route('presences.index') }}" class="mr-4 text-blue-600">{{ __('Presenças') }}</a>
+                        <a href="{{ route('activities.index') }}" class="mr-4 text-blue-600">{{ __('Atividades') }}</a>
+                        <a href="{{ route('configurations.index') }}" class="mr-4 text-blue-600">{{ __('Configurações') }}</a>
+                    @else
+                        <a href="{{ route('activities.index') }}" class="mr-4 text-blue-600">{{ __('Atividades') }}</a>
+                        <a href="{{ route('presences.index') }}" class="mr-4 text-blue-600">{{ __('Minhas presenças') }}</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit" class="text-red-600">{{ __('Sair') }}</button>
+                    </form>
                 </div>
             </nav>
-            @endauth
+        @endauth
+    </header>
 
-            <main class="@auth col-md-9 ms-sm-auto col-lg-10 px-md-4 @else container-fluid @endauth py-4">
-                @yield('content')
-            </main>
+    <main class="py-8">
+        <div class="max-w-4xl mx-auto">
+            @yield('content')
         </div>
-    </div>
+    </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleMenu() {
+            var links = document.getElementById('nav-links');
+            if (links) {
+                links.classList.toggle('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
