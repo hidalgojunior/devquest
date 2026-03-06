@@ -22,6 +22,12 @@
                     <td colspan="2" class="py-2 px-4 text-sm text-gray-600">
                         <strong>Tópico:</strong> {{ $rec->topic ?? '-' }}<br>
                         <strong>Material:</strong> {{ $rec->material ?? '-' }}
+                        @if($rec->material_file)
+                            <div class="mt-2">
+                                <strong>Arquivo:</strong><br>
+                                <iframe src="{{ asset('storage/'.$rec->material_file) }}" class="w-full h-64" frameborder="0"></iframe>
+                            </div>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

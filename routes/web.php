@@ -49,6 +49,13 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::post('groups', [\App\Http\Controllers\AdminController::class,'groupsStore'])->name('admin.groups.store');
 });
 
+// schedules
+Route::middleware('auth')->prefix('schedules')->group(function(){
+    Route::get('/', [\App\Http\Controllers\ScheduleController::class,'index'])->name('schedules.index');
+    Route::get('create', [\App\Http\Controllers\ScheduleController::class,'create'])->name('schedules.create');
+    Route::post('/', [\App\Http\Controllers\ScheduleController::class,'store'])->name('schedules.store');
+});
+
 // chat
 Route::middleware('auth')->prefix('chat')->group(function(){
     Route::get('/', [\App\Http\Controllers\ChatController::class,'index'])->name('chat.index');

@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="date" value="{{ $date }}">
                 <input type="hidden" name="group_id" value="{{ $selected }}">
@@ -82,6 +82,13 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium">Material visto</label>
                     <textarea name="material" class="mt-1 block w-full border-gray-300 rounded-md">{{ old('material') }}</textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium">Arquivo PDF</label>
+                    <input type="file" name="material_file" accept="application/pdf" class="mt-1 block w-full">
+                    @if(!empty($existing_file))
+                        <p class="text-xs text-gray-600 mt-1">Arquivo atual: <a href="{{ asset('storage/'.$existing_file) }}" target="_blank" class="text-blue-600 hover:underline">Ver PDF</a></p>
+                    @endif
                 </div>
                 <div class="overflow-x-auto relative">
                     <table class="w-full table-auto divide-y divide-gray-200">
