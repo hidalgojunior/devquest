@@ -21,6 +21,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/presences', [\App\Http\Controllers\PresenceController::class,'store'])->name('presences.store');
 
     Route::resource('activities', \App\Http\Controllers\ActivityController::class);
+
+    Route::resource('configurations', \App\Http\Controllers\ConfigurationController::class)->only(['index','edit','update']);
+    Route::get('/submissions/{submission}', [\App\Http\Controllers\SubmissionController::class,'show'])->name('submissions.show');
 });
 
 // public registration
