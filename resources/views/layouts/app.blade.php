@@ -9,25 +9,25 @@
 <body class="bg-gray-100 text-gray-800">
     <header class="bg-white shadow fixed w-full z-10">
         <div class="max-w-7xl mx-auto py-4 px-6 flex items-center justify-between">
+            <span class="text-3xl font-bold text-blue-900">DevQuest</span>
             <div class="flex items-center">
-                <button class="md:hidden mr-4" onclick="toggleMenu()" aria-label="Toggle sidebar">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-                <span class="text-3xl font-bold text-blue-900 mr-4">DevQuest</span>
+                @auth
+                    <button class="md:hidden ml-4" onclick="toggleMenu()" aria-label="Toggle sidebar">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <form method="POST" action="{{ route('logout') }}" class="inline ml-6">
+                        @csrf
+                        <button type="submit" class="text-red-600">Sair</button>
+                    </form>
+                @endauth
             </div>
-            @auth
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-                    <button type="submit" class="text-red-600">Sair</button>
-                </form>
-            @endauth
         </div>
     </header>
 
     @auth
-    <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-gray-200 p-4 transform -translate-x-full md:translate-x-0 transition-transform ease-in-out duration-300 z-20 overflow-y-auto">
+    <aside id="sidebar" class="fixed inset-y-0 right-0 w-64 bg-gray-200 p-4 transform translate-x-full md:translate-x-0 transition-transform ease-in-out duration-300 z-20 overflow-y-auto">
         <nav>
             <a href="{{ route('dashboard') }}" class="block mb-2 text-blue-700 font-semibold">Dashboard</a>
             @if(auth()->user()->isTeacher())
@@ -45,9 +45,6 @@
 
     <div class="pt-20">
         <div class="flex">
-            @auth
-                <div class="hidden md:block w-64"></div> <!-- spacer for sidebar -->
-            @endauth
             <div class="flex-1 px-6">
                 <main class="py-8">
                     <div class="max-w-4xl mx-auto">
@@ -55,6 +52,9 @@
                     </div>
                 </main>
             </div>
+            @auth
+                <div class="hidden md:block w-64"></div> <!-- spacer for sidebar right -->
+            @endauth
         </div>
     </div>
 
@@ -62,7 +62,7 @@
         function toggleMenu() {
             var sidebar = document.getElementById('sidebar');
             if (sidebar) {
-                sidebar.classList.toggle('-translate-x-full');
+                sidebar.classList.toggle('translate-x-full');
             }
         }
     </script>
