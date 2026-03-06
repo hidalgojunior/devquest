@@ -52,6 +52,13 @@
                             <button class="text-sm text-blue-600">{{ $g->qr_open ? 'Fechar QR' : 'Abrir QR' }}</button>
                         </form>
                     </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <!-- ranking table -->
 <div class="mt-6 bg-white p-6 rounded-lg shadow">
     <h3 class="text-xl font-semibold mb-2">Ranking de Pontos</h3>
