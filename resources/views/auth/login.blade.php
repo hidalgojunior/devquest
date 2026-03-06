@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="bg-white p-8 rounded shadow max-w-md mx-auto mt-12">
-    <div class="flex justify-center mb-6">
-        <img src="{{ asset('images/logo.png') }}" alt="DevQuest Logo" class="h-16">
+    <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-blue-900">DevQuest</h1>
+        <p class="text-sm text-gray-600">A ferramenta de maldade do professor</p>
     </div>
 
     <div class="mb-4">
