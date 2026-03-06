@@ -7,7 +7,7 @@ use App\Models\User;
 
 class Presence extends Model
 {
-    protected $fillable = ['user_id','date','present','qr_token','qr_expires_at','topic','material'];
+    protected $fillable = ['user_id','date','present','qr_token','qr_expires_at','topic','material','material_file'];
 
     protected $dates = ['date','qr_expires_at'];
 

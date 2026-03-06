@@ -36,7 +36,15 @@ class PresenceController extends Controller
             $students = User::where('class_group_id', $selected)->where('role','student')->get();
         }
         $presences = Presence::where('date', $date)->pluck('present','user_id')->toArray();
-        return view('presences.index', compact('date','groups','selected','students','presences'));
+        // check if any presence has material_file for this group/date
+        $existing_file = null;
+        if($selected){
+            $existing_file = Presence::where('date',$date)
+                ->whereIn('user_id', User::where('class_group_id',$selected)->pluck('id'))
+                ->whereNotNull('material_file')
+                ->value('material_file');
+        }
+        return view('presences.index', compact('date','groups','selected','students','presences','existing_file'));
     }
 
     public function store(Request $request)
@@ -44,15 +52,23 @@ class PresenceController extends Controller
         $data = $request->validate([
             'date' => 'required|date',
             'group_id' => 'required|exists:class_groups,id',
+            'material_file' => 'file|mimes:pdf|max:10240', // up to 10MB
             'present' => 'array',
             'present.*' => 'boolean',
         ]);
 
+        $filePath = null;
+        if($request->hasFile('material_file')){
+            $filePath = $request->file('material_file')->store('presences','public');
+        }
+
         foreach (User::where('class_group_id',$data['group_id'])->where('role','student')->get() as $student) {
             $was = in_array($student->id, array_keys($request->input('present',[])));
+            $update = ['present'=>$was,'topic'=>$request->input('topic'),'material'=>$request->input('material')];
+            if($filePath) $update['material_file'] = $filePath;
             Presence::updateOrCreate(
                 ['user_id'=>$student->id,'date'=>$data['date']],
-                ['present'=>$was,'topic'=>$request->input('topic'),'material'=>$request->input('material')]
+                $update
             );
         }
 
