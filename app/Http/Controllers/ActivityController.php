@@ -46,7 +46,7 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => ['required','string','max:255','regex:/^[A-Za-z0-9._-]+$/'],
             'description' => 'nullable|string',
             'start_date' => 'nullable|date',
             'due_date' => 'nullable|date',
@@ -91,7 +91,7 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
         $data = $request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => ['required','string','max:255','regex:/^[A-Za-z0-9._-]+$/'],
             'description' => 'nullable|string',
             'start_date' => 'nullable|date',
             'due_date' => 'nullable|date',

@@ -18,13 +18,28 @@ class SubmissionController extends Controller
             // attempt fetch
             try {
                 $url = $submission->github_link;
-                // simple parse for repo path and maybe commit
-                // assume link of form https://github.com/user/repo/commit/<hash> or /tree/<branch>
+                $user = $submission->user;
+                $repoPath = null;
+
                 if (preg_match("#github\.com/([^/]+/[^/]+)#", $url, $m)) {
-                    $repo = $m[1];
-                    $apiUrl = "https://api.github.com/repos/$repo/commits";
+                    $repoPath = $m[1];
+                } elseif ($user?->github_username) {
+                    $repoName = $user->github_repository ?: $user->github_username;
+                    $repoPath = $user->github_username.'/'.$repoName;
+                }
+
+                if ($repoPath) {
+                    $apiUrl = "https://api.github.com/repos/$repoPath/commits";
+                    $folder = trim((string) $submission->activity?->title);
+
                     $res = Http::withHeaders(['Accept'=>'application/vnd.github.v3+json'])
-                                ->get($apiUrl);
+                                ->get($apiUrl, ['path' => $folder]);
+
+                    if (!$res->ok()) {
+                        $res = Http::withHeaders(['Accept'=>'application/vnd.github.v3+json'])
+                            ->get($apiUrl);
+                    }
+
                     if ($res->ok()) {
                         foreach($res->json() as $c) {
                             GitCommit::create([

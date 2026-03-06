@@ -16,8 +16,9 @@
             </select>
         </div>
         <div class="mb-4">
-            <label class="block text-sm font-medium">Título</label>
+            <label class="block text-sm font-medium">Nome da atividade (nome da pasta no repositório)</label>
             <input name="title" class="mt-1 block w-full border-gray-300 rounded-md" value="{{ old('title',$activity->title ?? '') }}" required>
+            <p class="text-xs text-gray-500 mt-1">Use apenas letras, números, ponto, sublinhado e hífen (sem espaços).</p>
         </div>
         <div class="mb-4">
             <label class="block text-sm font-medium">Descrição</label>

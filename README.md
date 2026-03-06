@@ -100,6 +100,9 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 - Lógica de pontuação configurável, com painel para ajustes.
 - CRUD de atividades completo, incluindo visibilidade, rascunho, escopo e penalidades.
 - Controle de QR Code por turma; presenças gravam tópico e material.
+- Perfil completo de usuários com foto e campos de contato por papel (aluno/professor).
+- Integração de entregas por GitHub com base em `github_username` + repositório principal.
+- A atividade passa a usar o nome da pasta no repositório (mesmo valor do título da atividade).
 - Histórico de submissões e commits integrado.
 - Ranking, níveis e badges implementados com destaque a top3.
 - Configurações administrativas funcionando.

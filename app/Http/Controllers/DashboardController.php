@@ -24,7 +24,7 @@ class DashboardController extends Controller
             })->sortByDesc('points')->values();
             return view('dashboard.teacher', compact('user','groups','ranking','totalStudents','totalActivities'));
         }
-        // student dashboard could go here
-        return view('dashboard.student', compact('user'));
+        $teachers = User::where('role', 'teacher')->orderBy('name')->get();
+        return view('dashboard.student', compact('user','teachers'));
     }
 }
