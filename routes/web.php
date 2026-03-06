@@ -23,8 +23,9 @@ Route::post('/class-groups/{group}/toggle-qr', function(ClassGroup $group){
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'index'])->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [\App\Http\Controllers\ProfileController::class,'edit'])->name('profile.edit');    // keep alias for old link
-    Route::get('/profile', [\App\Http\Controllers\ProfileController::class,'edit'])->name('profile.show');    Route::put('/profile', [\App\Http\Controllers\ProfileController::class,'update'])->name('profile.update');
+    // user profile
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class,'edit'])->name('profile.edit');
+    Route::put('/profile', [\App\Http\Controllers\ProfileController::class,'update'])->name('profile.update');
 });
 
 Route::middleware(['auth'])->group(function () {
