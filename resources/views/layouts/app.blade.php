@@ -15,8 +15,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
-                <img src="{{ asset('images/logo.png') }}" alt="DevQuest Logo" class="h-12 mr-4">
-                <h1 class="text-2xl font-bold">DevQuest</h1>
+                <span class="text-3xl font-bold text-blue-900 mr-4">DevQuest</span>
             </div>
             @auth
                 <form method="POST" action="{{ route('logout') }}" class="inline">

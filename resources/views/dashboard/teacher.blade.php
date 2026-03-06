@@ -1,11 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white p-8 rounded-lg shadow">
-    <h2 class="text-2xl font-bold mb-4">Bem-vindo, {{ $user->name }} (Professor)</h2>
-    <p class="text-gray-600">Utilize o menu à esquerda para navegar pelo sistema.</p>
+<!-- main header area -->
+<div class="bg-white p-6 rounded-lg shadow">
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold text-blue-900">Painel do Professor</h1>
+            <p class="text-gray-600">Visão geral das turmas e ranking</p>
+        </div>
+        {{-- option buttons could go here if needed --}}
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white border-l-4 border-blue-600 p-4 rounded-lg shadow">
+            <p class="text-sm text-gray-500 uppercase">Turmas</p>
+            <p class="text-2xl font-bold">{{ $groups->count() }}</p>
+        </div>
+        <div class="bg-white border-l-4 border-green-600 p-4 rounded-lg shadow">
+            <p class="text-sm text-gray-500 uppercase">Alunos</p>
+            <p class="text-2xl font-bold">{{ $totalStudents }}</p>
+        </div>
+        <div class="bg-white border-l-4 border-yellow-600 p-4 rounded-lg shadow">
+            <p class="text-sm text-gray-500 uppercase">Atividades</p>
+            <p class="text-2xl font-bold">{{ $totalActivities }}</p>
+        </div>
+    </div>
 </div>
 
+<!-- groups table -->
 <div class="mt-6 bg-white p-6 rounded-lg shadow">
     <h3 class="text-xl font-semibold mb-2">Turmas</h3>
     <div class="overflow-x-auto">
@@ -28,6 +50,7 @@
     </div>
 </div>
 
+<!-- ranking table -->
 <div class="mt-6 bg-white p-6 rounded-lg shadow">
     <h3 class="text-xl font-semibold mb-2">Ranking de Pontos</h3>
     <div class="overflow-x-auto">
