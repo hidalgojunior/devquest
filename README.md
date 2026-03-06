@@ -85,79 +85,43 @@ Um sistema de gerenciamento de aulas com gamificação para turmas de Programaç
 | 🥉 3º lugar       | Bronze         | #CD7F32  |
 | Demais           | Cinza neutro   | #E0E0E0  |
 
-## ✅ Checklist de Desenvolvimento
+## ✅ Funcionalidades concluídas
 
-> 📌 **Importante:** sempre que um item do checklist for concluído, faça um commit no repositório `https://github.com/hidalgojunior/devquest.git` descrevendo a tarefa finalizada. Isso ajuda a manter histórico claro e rastreável.
->
-- [x] **Definir modelo de dados e ER**
-  - Mapear entidades (Aluno, Turma, Presença, Atividade, Occorrência, Commit, Configuração, etc.)
-  - Desenhar diagrama de relacionamento e atributos necessários.
-- [ ] **Configurar ambiente Laravel + MySQL + Docker**
-  - Inicializar projeto Laravel.
-  - Criar `docker-compose` com serviços PHP, MySQL e, se necessário, Redis/queue.
-  - Garantir exposição da porta 2026 no host.
-- [ ] **Criar migrações para entidades principais**
-  - Implementar migrations para cada tabela do modelo de dados.
-  - Incluir chaves estrangeiras e índices.
-- [x] **Implementar importação XLSX de alunos**
-  - Adicionar upload e parser para arquivos Excel.  
-  - Validar dados e persistir registros na base.  
-  ✅ Instalada biblioteca maatwebsite/excel e criada implementação `StudentsImport` + comando `php artisan app:import-students {path}` para popular usuários a partir de `2o. - Ano.xlsx` (arquivo renomeado para `alunos.xlsx`).
-  > Note: foi adicionada migration para tornar `users.email` *nullable* e remover índice único, permitindo importação sem e-mails.
+> 📌 **Lembrete:** registre cada conclusão com um commit descritivo.
 
-- [x] **Usar `logo.png` em layouts**
-  - Mover o arquivo para `public/images` (ou equivalente) e referenciar em `layouts/app.blade.php`.
-  - Exibir no header, formulários de login e tabelas de pontuação.  
-  ✅ Logo copiado para `public/images` e layout básico com header já exibindo a imagem.
+- Modelo de dados e ER definido; migrações criadas.
+- Importação XLSX de alunos operacional, com `StudentsImport` e arquivo inicial.
+- Cadastro de alunos com validação GitHub e senha imutável.
+- Seeder de professor implementado.
+- Autenticação com abas para aluno/professor funcionando.
+- Marca textual (`DevQuest`) adotada em todas as telas.
+- Dashboard e navegação concluídos (sidebar direita, off‑canvas, responsivo).
+- Lógica de pontuação configurável, com painel para ajustes.
+- CRUD de atividades completo, incluindo visibilidade, rascunho, escopo e penalidades.
+- Controle de QR Code por turma; presenças gravam tópico e material.
+- Histórico de submissões e commits integrado.
+- Ranking, níveis e badges implementados com destaque a top3.
+- Configurações administrativas funcionando.
+- Internacionalização removida, fuso/locale fixos.
 
-> 💡 A permissão de armazenamento deve ser corrigida para evitar erros 500 (`tempnam()` no Blade); execute `php artisan optimize:clear` e garanta `storage/` e `bootstrap/cache` graváveis.
-- [x] **Implementar cadastro de alunos e validação GitHub**
-  - Formulário para inserção individual e verificação automática do usuário GitHub.
-  - Integração com API GitHub ou OAuth para confirmar identidade.  
-  ✅ Registration form and controller in place; GitHub username validated and password generated automatically.
-  - 🔐 Senha gerada baseada em CPF/nascimento/telefone e travada (imutável) via campo `password_locked`.  Uma alteração não é permitida após criação.
-- [x] **Criar interface de upload XLSX**
-  - Página protegida onde professores podem selecionar arquivo e enviar.
-  - Rota `students/import` adicionada e controller responsável.
-  ✅ Upload funcional e feedback de sucesso.
+## 🛠️ Pendências e prioridades
 
-- [x] **Criar seeder de usuário professor**
-  - Gera conta `hidalgojunior@gmail.com` / senha `jr34139251` com role teacher.
-- [ ] **Configurar geração de senha imutável**
-  - Gerar senha a partir de CPF, data de nascimento e telefone.
-  - Armazenar de forma segura (hash) e impedir edições futuras.
-- [x] **Autenticação e abas de login**
-  - Tela única com abas para professor e aluno.  
-  - Gerenciar roles e redirecionamentos após o login.  
-  ✅ LoginController simples criado; rotas `/login`, `/logout`, `/dashboard` definidos. View com abas funcional e redirecionamento após auth.
-- [x] **Página de registro e histórico de presença**
-  - Interface para marcação de presença por data.
-  - Relatórios de faltas e presenças por aluno/turma.
-  ✅ CRUD básico: seleção da turma e data, marcação de checkboxes e armazenamento de presenças.
-- [x] **Painel de atividades com prazos e penalidades**
-  - CRUD de atividades com campos de data, descrição e regras.
-  - Cálculo automático de penalidades 15d/30d/fechamento.  
-  ✅ Criado `ActivityController` com recursos completos.
-  - 🔄 Comando `app:close-expired-activities` agenda fechamento diário de tarefas vencidas (>30 dias).
+### Alta prioridade
+1. Escrever testes automáticos (unitários + integração) para fluxos críticos.
+2. Organizar commits/limpar alterações não comitadas (`git status`).
+3. Finalizar Docker‑compose e documentação para porta 2026.
 
-- [ ] **Área de dashboard do professor**
-  - Link para importar/registrar alunos, marcar presenças e gerenciar atividades.
-  - Exibição de turmas com contagem de alunos.
-- [x] **Lógica de cálculo de pontuação configurável**
-  - Implementar serviço que aplica regras e valores paramétricos.  
-  - Interface para ajuste das pontuações.  
-  ✅ `ScoreCalculator` criado; busca configurações em tabela `configurations`. Seeder padrão insere valores iniciais (+1 presença, +2 entrega no prazo, -2 faltas, -3 atrasos, -1 ocorrência) e agora contempla penalidades graduais (15 e 30 dias).
-- [x] **Visualização de commits para avaliação**
-  - Buscar commits do GitHub relacionados à atividade.  
-  - Exibir lista com data e mensagem para o professor.  
-  ✅ Implementado `SubmissionController@show` que carrega commits na primeira visualização e os armazena em `git_commits`.- [ ] **Painel de administração (configurações gerais)**
-  - Área para ajustar pesos, limites de isenção e controle de turmas.
-- [x] **Gamificação com níveis, badges e ranking**
-  - Calcular XP, atribuir níveis e exibir badges.  
-  - Ranking com cores especiais para top 3.  
-  ✅ `ScoreCalculator::levelAndBadge` cria nível/badge; lista ordenada exibida no dashboard do professor.- [ ] **Integração com Waha**
-  - Preparar endpoints ou mecanismos de comunicação com o serviço.
-- [ ] **Interface usando Tailwind**
+### Média prioridade
+1. Implementar integração com Waha (se necessário).
+2. Adicionar suporte a upload de material na aula (PDF, links).
+3. Refinar responsividade e UI (dark mode, overlays, iconografia).
+
+### Baixa prioridade
+1. Desenvolver relatórios extras e notificações.
+2. Refatorar componentes Blade em `<x-*`> para reuso.
+3. Otimizar performance e limpar código legado.
+
+> 🔍 **Nota:** itens estão ordenados por urgência; foco inicial nos testes e estabilidade.
   - Aplicar estilos responsivos e a paleta de cores definida.
   > ⚙️ Para gerar assets e evitar `ViteManifestNotFoundException`, execute `npm install && npm run build` dentro do container (já foi feito).
 - [ ] **Docker-compose com porta 2026**

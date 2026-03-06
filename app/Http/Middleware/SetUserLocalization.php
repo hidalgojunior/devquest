@@ -13,15 +13,10 @@ class SetUserLocalization
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check()) {
-            $user = auth()->user();
-            $locale = $user->locale ?: config('app.locale');
-            App::setLocale($locale);
-            \Carbon\Carbon::setLocale($locale);
-
-            $timezone = $user->timezone ?: config('app.timezone');
-            date_default_timezone_set($timezone);
-        }
+        // always force Brazilian Portuguese and UTC-3 regardless of user
+        App::setLocale('pt_BR');
+        \Carbon\Carbon::setLocale('pt_BR');
+        date_default_timezone_set('America/Sao_Paulo');
 
         return $next($request);
     }

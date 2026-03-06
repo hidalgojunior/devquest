@@ -15,11 +15,7 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = auth()->user();
-        $data = $request->validate([
-            'locale' => 'required|string',
-            'timezone' => 'required|string',
-        ]);
-        $user->update($data);
-        return redirect()->route('profile.edit')->with('status', __('Perfil atualizado'));
+        // localisation no longer configurable
+        return redirect()->route('profile.edit')->with('status','Perfil atualizado');
     }
 }

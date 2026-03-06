@@ -57,7 +57,7 @@ class ConfigurationController extends Controller
         $config = Configuration::findOrFail($id);
         $data = $request->validate(['value' => 'required']);
         $config->update($data);
-        return redirect()->route('configurations.index')->with('status', __('Configuração atualizada'));
+        return redirect()->route('configurations.index')->with('status', 'Configuração atualizada');
 
     }
 
