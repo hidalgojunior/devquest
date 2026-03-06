@@ -52,7 +52,7 @@ class PresenceController extends Controller
             $was = in_array($student->id, array_keys($request->input('present',[])));
             Presence::updateOrCreate(
                 ['user_id'=>$student->id,'date'=>$data['date']],
-                ['present'=>$was]
+                ['present'=>$was,'topic'=>$request->input('topic'),'material'=>$request->input('material')]
             );
         }
 

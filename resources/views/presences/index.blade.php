@@ -24,6 +24,14 @@
             @csrf
             <input type="hidden" name="date" value="{{ $date }}">
             <input type="hidden" name="group_id" value="{{ $selected }}">
+            <div class="mb-4">
+                <label class="block text-sm font-medium">Tópico da aula</label>
+                <input name="topic" class="mt-1 block w-full border-gray-300 rounded-md" value="{{ old('topic') }}">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium">Material visto</label>
+                <textarea name="material" class="mt-1 block w-full border-gray-300 rounded-md">{{ old('material') }}</textarea>
+            </div>
             <div class="overflow-x-auto">
                 <table class="w-full table-auto divide-y divide-gray-200">
                     <thead class="bg-gray-100">

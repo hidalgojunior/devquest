@@ -18,6 +18,12 @@
                     <td class="py-2 px-4">{{ \Carbon\Carbon::parse($rec->date)->locale(app()->getLocale())->isoFormat('L') }}</td>
                     <td class="py-2 px-4">{{ $rec->present ? 'Sim' : 'Não' }}</td>
                 </tr>
+                <tr class="bg-gray-50">
+                    <td colspan="2" class="py-2 px-4 text-sm text-gray-600">
+                        <strong>Tópico:</strong> {{ $rec->topic ?? '-' }}<br>
+                        <strong>Material:</strong> {{ $rec->material ?? '-' }}
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
