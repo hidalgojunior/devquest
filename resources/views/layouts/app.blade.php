@@ -27,7 +27,8 @@
     </header>
 
     @auth
-    <aside id="sidebar" class="fixed inset-y-0 right-0 w-64 bg-gray-200 p-4 transform translate-x-full md:translate-x-0 transition-transform ease-in-out duration-300 z-20 overflow-y-auto">
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-10 md:hidden"></div>
+    <aside id="sidebar" class="fixed inset-y-0 right-0 w-64 bg-gray-200 p-4 transform translate-x-full md:translate-x-0 transition-transform ease-in-out duration-300 z-30 overflow-y-auto shadow-lg">
         <nav>
             <a href="{{ route('dashboard') }}" class="block mb-2 text-blue-700 font-semibold">Dashboard</a>
             @if(auth()->user()->isTeacher())
@@ -61,10 +62,18 @@
     <script>
         function toggleMenu() {
             var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('overlay');
             if (sidebar) {
-                sidebar.classList.toggle('translate-x-full');
+                var isOpen = sidebar.classList.toggle('translate-x-full');
+                if (overlay) overlay.classList.toggle('hidden');
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            var overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
     </script>
 </body>
 </html>
