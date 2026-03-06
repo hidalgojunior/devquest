@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="bg-white p-8 rounded shadow max-w-xl mx-auto">
-    <h2 class="text-xl font-semibold mb-4">{{ isset($activity) ? 'Editar atividade' : 'Nova atividade' }}</h2>
-    <form method="POST" action="{{ isset($activity) ? route('activities.update',$activity) : route('activities.store') }}">
+    <h2 class="text-xl font-semibold mb-4">{{ $activity->exists ? 'Editar atividade' : 'Nova atividade' }}</h2>
+    <form method="POST" action="{{ $activity->exists ? route('activities.update',$activity) : route('activities.store') }}">
         @csrf
-        @if(isset($activity)) @method('PUT') @endif
+        @if($activity->exists) @method('PUT') @endif
         <div class="mb-4">
             <label class="block text-sm font-medium">Turma</label>
             <select name="class_group_id" class="mt-1 block w-full border-gray-300 rounded-md" required>

@@ -12,6 +12,9 @@ class DashboardController extends Controller
         $user = auth()->user();
         if ($user->role === 'teacher') {
             $groups = \App\Models\ClassGroup::withCount('users')->get();
+            // metrics
+            $totalStudents = User::where('role','student')->count();
+            $totalActivities = \App\Models\Activity::count();
             // ranking
             $students = User::where('role','student')->get();
             $ranking = $students->map(function($s){
@@ -19,7 +22,7 @@ class DashboardController extends Controller
                 $lb = \App\Services\ScoreCalculator::levelAndBadge($pts);
                 return ['user'=>$s,'points'=>$pts,'level'=>$lb['level'],'badge'=>$lb['badge']];
             })->sortByDesc('points')->values();
-            return view('dashboard.teacher', compact('user','groups','ranking'));
+            return view('dashboard.teacher', compact('user','groups','ranking','totalStudents','totalActivities'));
         }
         // student dashboard could go here
         return view('dashboard.student', compact('user'));
